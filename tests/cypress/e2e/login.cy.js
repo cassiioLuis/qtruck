@@ -3,12 +3,17 @@ import mapPage from '../support/pages/Map'
 
 describe('Login', () => {
 
-    it('deve logar com sucesso', () => {
-        const user = {
-            name: 'Cássio',
-            instagram: '@cassio.luis',
-            password: 'pwd123'
-        }
+    beforeEach(() => {
+        cy.fixture('login-users').then(function (users) {
+            this.users = users
+        })
+    })
+
+    it.only('deve logar com sucesso', function () {
+
+        const user = this.users.success
+
+        cy.apiCreateUser(user)
 
         loginPage.go()
         loginPage.form(user)
@@ -17,11 +22,8 @@ describe('Login', () => {
         mapPage.loggedUser(user.name)
     })
 
-    it('nao deve logar com senha invalida', () => {
-        const user = {
-            instagram: '@cassio.luis',
-            password: 'abc123'
-        }
+    it('nao deve logar com senha invalida', function () {
+        const user = this.users.inv_pass
 
         loginPage.go()
         loginPage.form(user)

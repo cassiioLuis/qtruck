@@ -1,0 +1,11 @@
+{
+    "success" : {
+        "name": "Cássio",
+        "instagram": "@cassio.luis",
+        "password": "pwd123"
+    },
+    "inv_pass" : {
+        "instagram": "@cassio.luis",
+        "password": "abc123"
+    }
+}
